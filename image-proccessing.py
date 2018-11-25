@@ -9,11 +9,13 @@ sharpen_kernal = np.array([[0, -1, 0], [-1 ,5, -1], [0, -1, 0]])
 gaussian_kernal1 = cv2.getGaussianKernel(3,0)
 gaussian_kernal2 = cv2.getGaussianKernel(5,0)
 box_kernal = np.array([[1,1,1],[1,1,1],[1,1,1]], np.float32) / 9.0
+emboss_kernal = np.array([[-2, -1, 0], [-1, 1, 1],[0, 1, 2]])
+custom_kernal = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
 
-kernals = [identity_kernal, sharpen_kernal, gaussian_kernal1, gaussian_kernal2, box_kernal]
-dirPath = os.path.dirname(os.path.realpath(__file__))
-print(dirPath)
-original_img = cv2.imread(dirPath +'/dark-clouds-daylight-grass-552501.jpg')
+kernals = [identity_kernal, sharpen_kernal, gaussian_kernal1, gaussian_kernal2, box_kernal, emboss_kernal, custom_kernal]
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+original_img = cv2.imread(dir_path +'/dark-clouds-daylight-grass-552501.jpg')
 original_img = cv2.resize(original_img, (0,0), fx=0.25, fy=0.25)
 grayscale_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2GRAY)
 img_matrix = original_img
@@ -37,13 +39,6 @@ while True:
     settings = {'grayscale': grayscale, 'brightness': brightness, 'contrast': contrast, 'filter': kernal_idx}
     color_modified = cv2.filter2D(original_img, -1, kernals[kernal_idx])
     grayscale_modified = cv2.filter2D(grayscale_img, -1, kernals[kernal_idx])
-
-    # for row in range(rows):
-    #    for column in range(columns):
-    #        img_matrix[row, column] = brightness - 50
-    # for gray_row in range(gray_rows):
-    #    for gray_column in range(gray_columns):
-    #        grayscale_img_matrix[gray_row, gray_column] = brightness - 50
 
     key = cv2.waitKey(100)
     if key == ord('q'):
