@@ -1,6 +1,12 @@
 # Python Image Processing - Make Instagram-Style Filters
 
-Python Application that can be used to apply filters, change contrast, brightness as well as toggle between grayscale (black&white) and color.
-Not that the original images have to be in color.
+Python Application that can be used to:
 
-This is based of Zenva accedemys course on images proccessing whith python with a few minor additions
+* Apply filters 
+* Change contrast 
+* Change brightness 
+* Toggle between grayscale (black&white) and color (note that the original images have to be in color)
+
+This is based of Zenva academys course on images proccessing whith python with a few minor additions
+
+To run this application you need have the cv2 and numpy modules installed in the enviroment you are running it in
